@@ -1,7 +1,12 @@
 spring:
   application:
     name: personal-task
-
+  mvc:
+    cors: 
+      allowed-origins: "http://localhost:4200"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
   datasource:
     url: jdbc:postgresql://localhost:5432/registration
     username: root
@@ -17,6 +22,13 @@ spring:
         format_sql: true
 
 server:
+  servlet:
+    session:
+      cookie:
+        # Allow the browser to send the cookie in cross-site requests
+        same-site: None
+        # In dev (HTTP), keep it false; in prod (HTTPS) you should set this true
+        secure: false
   error:
     include-message: always
     include-binding-errors: always
